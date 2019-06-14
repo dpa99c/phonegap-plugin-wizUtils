@@ -67,4 +67,6 @@
  */
 -(void)restart:(CDVInvokedUrlCommand *)command;
 
+-(void)getSafeAreaInsets:(CDVInvokedUrlCommand *)command;
+
 @end

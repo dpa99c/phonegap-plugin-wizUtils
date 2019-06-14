@@ -139,4 +139,31 @@
     }
 }
 
+- (void)getSafeAreaInsets:(CDVInvokedUrlCommand *)command {
+    int top = 0;
+    int bottom = 0;
+    int left = 0;
+    int right = 0;
+    if (IsAtLeastiOSVersion(@"11.0")) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000
+        if (@available(iOS 11.0, *)) {
+            top = UIApplication.sharedApplication.keyWindow.safeAreaInsets.top;
+            bottom = UIApplication.sharedApplication.keyWindow.safeAreaInsets.bottom;
+            left = UIApplication.sharedApplication.keyWindow.safeAreaInsets.left;
+            right = UIApplication.sharedApplication.keyWindow.safeAreaInsets.right;
+            
+            
+        }
+#endif
+    }
+    NSMutableDictionary* insets = [NSMutableDictionary new];
+    insets[@"top"] = @((int)top);
+    insets[@"bottom"] = @((int)bottom);
+    insets[@"left"] = @((int)left);
+    insets[@"right"] = @((int)right);
+    
+    CDVPluginResult *pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:insets];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+}
+
 @end

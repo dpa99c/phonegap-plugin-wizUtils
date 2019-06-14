@@ -50,6 +50,10 @@ var wizUtils = {
             showSplashScreen = null;
         }
         cordova.exec(null, null, "WizUtilsPlugin", "restart", [showSplashScreen]);
+    },
+
+    getSafeAreaInsets: function(s, f) {
+        cordova.exec(s, f, "WizUtilsPlugin", "getSafeAreaInsets", []);
     }
 
 };
