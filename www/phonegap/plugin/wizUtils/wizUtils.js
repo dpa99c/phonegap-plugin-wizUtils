@@ -54,6 +54,10 @@ var wizUtils = {
 
     getSafeAreaInsets: function(s, f) {
         cordova.exec(s, f, "WizUtilsPlugin", "getSafeAreaInsets", []);
+    },
+
+    getPhysicalCameraBounds: function(s, f) {
+        cordova.exec(s, f, "WizUtilsPlugin", "getPhysicalCameraBounds", []);
     }
 
 };
